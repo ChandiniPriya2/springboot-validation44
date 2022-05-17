@@ -1,0 +1,39 @@
+package com.jobiak.validation.controller;
+
+
+
+import javax.validation.Valid;
+
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.jobiak.validation.model.SignupBean;
+
+@Controller
+public class SignupController {
+@GetMapping("/signup")
+
+public String doSignup(Model model) {
+	SignupBean signupBean=new SignupBean();
+	model.addAttribute("signupBean",signupBean);
+	return "signup";
+}
+org.slf4j.Logger logger=LoggerFactory.getLogger(SignupController.class);
+@PostMapping("/signupform")
+
+public String doSignupForm(@Valid @ModelAttribute("signupBean")SignupBean signupBean,BindingResult errors,Model model) {
+	//System.out.println(signupBean);
+	logger.info(signupBean.toString());
+	if(errors.hasErrors()) {
+		return "signup";
+		
+	}
+	model.addAttribute("signupBean",signupBean);
+	return "success";
+}
+}
