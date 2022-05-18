@@ -4,6 +4,7 @@ package com.jobiak.validation.controller;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,7 @@ public String doSignup(Model model) {
 	model.addAttribute("signupBean",signupBean);
 	return "signup";
 }
+
 org.slf4j.Logger logger=LoggerFactory.getLogger(SignupController.class);
 @PostMapping("/signupform")
 
